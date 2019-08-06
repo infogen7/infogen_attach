@@ -8,15 +8,15 @@
 		<version>V12.0.0R190708</version>
 		<relativePath>../infogen_combine</relativePath>
 	</parent>
-	<artifactId>infogen_core</artifactId>
+	<artifactId>infogen_attach</artifactId>
 	<version>${global.version}</version>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
-	<url>https://github.com/infogen7/infogen_core</url>
+	<url>https://github.com/infogen7/infogen_attach</url>
 	<description>提供最基础的工具类</description>
 	<issueManagement>
 		<system>Github Issue</system>
-		<url>https://github.com/infogen7/infogen_core/issues</url>
+		<url>https://github.com/infogen7/infogen_attach/issues</url>
 	</issueManagement>
 	<licenses>
 		<license>
@@ -31,9 +31,9 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git@github.com:infogen7/infogen_core.git</connection>
-		<developerConnection>scm:git@github.com:infogen7/infogen_core.git</developerConnection>
-		<url>git@github.com:infogen7/infogen_core.git</url>
+		<connection>scm:git@github.com:infogen7/infogen_attach.git</connection>
+		<developerConnection>scm:git@github.com:infogen7/infogen_attach.git</developerConnection>
+		<url>git@github.com:infogen7/infogen_attach.git</url>
 	</scm>
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -41,11 +41,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.25.0-GA</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -53,22 +48,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version>
+				<version>3.1.2</version>
 				<configuration>
-					<jarName>infogen_core-${project.version}</jarName>
 					<archive>
 						<manifest>
 							<!-- 往Manifest.MF文件中添加ClassPath -->
 							<addClasspath>true</addClasspath>
+							<!-- classpath前缀 -->
+							<classpathPrefix>lib/</classpathPrefix>
+							<!-- 主程序入口 -->
+							<mainClass>com.infogen.Attach</mainClass>
 						</manifest>
-						<manifestEntries>
-							<Manifest-Version>${project.version}-SNAPSHOT</Manifest-Version>
-							<Archiver-Version>${project.version}-Release</Archiver-Version>
-							<Agent-Class>com.infogen.aop.agent.AOP_Agent</Agent-Class>
-							<Can-Redefine-Classes>true</Can-Redefine-Classes>
-							<Can-Retransform-Classes>true</Can-Retransform-Classes>
-							<Premain-Class>com.infogen.aop.agent.AOP_Agent</Premain-Class>
-						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
